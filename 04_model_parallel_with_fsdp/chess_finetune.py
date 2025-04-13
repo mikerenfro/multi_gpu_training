@@ -177,7 +177,7 @@ tokenizer = AutoTokenizer.from_pretrained("codellama/CodeLlama-7b-hf", cache_dir
 model = AutoModelForCausalLM.from_pretrained("codellama/CodeLlama-7b-hf", cache_dir=".cache")
 logger.info(model)
 
-torch.cuda.set_device(torch.distributed.get_rank() % 2)
+torch.cuda.set_device(torch.distributed.get_rank())
 device = torch.cuda.current_device()
 if args.no_fsdp:
     # Move the model to the GPU and wrap model with DDP (no model sharding)
